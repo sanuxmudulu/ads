@@ -155,14 +155,10 @@ function Landing() {
         {step === 1 ? (
           <section className="mt-5 text-center sm:mt-10">
             <Badge>Playful Rewards EXCLUSIVE</Badge>
-            <h1 className="mt-4 font-black leading-[1.02] tracking-tight sm:mt-6">
-  <span className="block whitespace-nowrap text-[36px] sm:text-6xl">
-    Get Paid for Testing
-  </span>
-
-  <span className="block text-5xl sm:text-6xl">
-    <GradientText>Apps &amp; Games</GradientText>
-  </span>
+            <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl">
+  Get Paid for Testing
+  <br />
+  <GradientText>Apps &amp; Games</GradientText>
 </h1>
             <p className="mx-auto mt-4 max-w-[660px] text-[14px] leading-snug text-[#a7aec5] sm:mt-6 sm:text-lg sm:leading-relaxed">
               Earn up to $300+ per offer by testing apps, games &amp; completing surveys. Fast cashouts available!
@@ -186,14 +182,9 @@ function Landing() {
               </div>
             </div>
 
-            <div className="mt-5 flex items-center justify-center gap-3 sm:mt-8">
-  <GreenStars />
-  <span className="text-lg font-bold text-white">
-    Trustpilot
-  </span>
-</div>
+            
 
-            <h2 className="mt-6 text-xl font-bold text-white sm:mt-12">What type of phone do you use?</h2>
+            <h2 className="mt-7 text-xl font-bold text-white sm:mt-12">What type of phone do you use?</h2>
 
             <div className="mt-4 space-y-3 text-left sm:mt-6 sm:space-y-4">
               {[
