@@ -33,6 +33,15 @@ function TrustpilotHeader() {
   );
 }
 
+function CompactTrustpilotLine() {
+  return (
+    <div className="flex items-center justify-center gap-3">
+      <GreenStars />
+      <span className="text-lg font-bold text-white">Trustpilot</span>
+    </div>
+  );
+}
+
 const reviews = [
   {
     initials: "J",
@@ -160,25 +169,28 @@ function Landing() {
 
   return (
     <div className="min-h-screen bg-[#0f1724] text-white">
-      <div className="mx-auto w-full max-w-[760px] px-5 py-6 sm:px-8 sm:py-10">
+      <div className="mx-auto w-full max-w-[760px] px-5 py-5 sm:px-8 sm:py-10">
         <ProgressBar percent={step === 1 ? 50 : 100} step={`Step ${step} of 2`} />
 
         {step === 1 ? (
-          <section className="mt-10 text-center">
+          <section className="mt-6 text-center sm:mt-10">
             <Badge>Playful Rewards EXCLUSIVE</Badge>
-            <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-              Get Paid for Testing
-              <br />
-              <GradientText>Apps &amp; Games</GradientText>
+
+            <h1 className="mt-4 font-black leading-[1.03] tracking-tight sm:mt-6">
+              <span className="block whitespace-nowrap text-[38px] sm:text-6xl">Get Paid for Testing</span>
+              <span className="block text-5xl sm:text-6xl">
+                <GradientText>Apps &amp; Games</GradientText>
+              </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-base leading-relaxed text-[#a7aec5] sm:text-lg">
+
+            <p className="mx-auto mt-4 max-w-[650px] text-[15px] leading-snug text-[#a7aec5] sm:mt-6 sm:text-lg sm:leading-relaxed">
               Earn up to $300+ per offer by testing apps, games &amp; completing surveys. Fast cashouts available!
             </p>
 
-            <div className="mt-8 rounded-2xl border border-[#262a36] bg-[#181b24] p-5 sm:p-6">
+            <div className="mt-7 rounded-2xl border border-[#262a36] bg-[#181b24] p-5 sm:mt-8 sm:p-6">
               <div className="grid grid-cols-3 divide-x divide-[#262a36]">
                 {[
-                  { Icon: Users, value: "133K+", label: "ACTIVE USERS" },
+                  { Icon: Users, value: "260K+", label: "ACTIVE USERS" },
                   { Icon: DollarSign, value: "$300+", label: "PER OFFER" },
                   { Icon: Clock, value: "Fast", label: "CASHOUTS" },
                 ].map(({ Icon, value, label }) => (
@@ -193,19 +205,13 @@ function Landing() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col items-center gap-3">
-              <TrustpilotHeader />
-              <div className="flex items-center gap-3">
-                <GreenStars />
-                <span className="flex items-center gap-1 text-sm text-white">
-                  <Check className="h-4 w-4 text-[#00b67a]" /> Verified
-                </span>
-              </div>
+            <div className="mt-6 sm:mt-8">
+              <CompactTrustpilotLine />
             </div>
 
-            <h2 className="mt-12 text-xl font-bold text-white">What type of phone do you use?</h2>
+            <h2 className="mt-7 text-xl font-bold text-white sm:mt-12">What type of phone do you use?</h2>
 
-            <div className="mt-6 space-y-4 text-left">
+            <div className="mt-5 space-y-4 text-left sm:mt-6">
               {[
                 { id: "iphone", label: "iPhone", sub: "Perfect for Playful Rewards!", Icon: Smartphone },
                 { id: "android", label: "Android", sub: "Works with all Android devices!", Icon: AndroidIcon },
