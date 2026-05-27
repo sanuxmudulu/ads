@@ -24,14 +24,14 @@ function TrustpilotHeader() {
 
 const reviews = [
   {
-    initials: "J",
-    name: "Jena Bonds",
+    initials: "CK",
+    name: "Charlotte Kingston",
     title: "The games are fun to play!",
-    body: "The games are fun to play! They have great offers. All you have to do is complete the required task and you will receive the reward. It's just that simple. The payout method is quick. I received my reward via PayPal the same day I requested it. Don't miss out on the chance to be rewarded download Playful Rewards now!",
+    body: "The games are fun to play! They have great offers. All you have to do is complete the required task and you will receive the reward. It's just that simple. The payout method is quick and I received my reward via PayPal the same day too.",
   },
   {
-    initials: "MM",
-    name: "Md Marquis mishamarquis",
+    initials: "E",
+    name: "Ella",
     title: "They Do Pay!!!",
     body: "I've been playing and I actually thought I messed up by not redeeming my points in a timely manner but I was wrong and just made redeemed my first game play for a $50.00 Visa card!!!",
   },
@@ -45,7 +45,7 @@ const reviews = [
     initials: "HM",
     name: "Haley Montanez",
     title: "Always very accurate!",
-    body: "Send me my money always and is very accurate and whenever I have a problem the online helpline is super helpful! I recommend using this app.",
+    body: "Send me my money always and is very accurate and whenever I have a problem the online helpline is super helpful! Recommended side gig for people on their phones.",
   },
 ];
 
@@ -167,7 +167,7 @@ function Landing() {
             <div className="mt-8 rounded-2xl border border-[#262a36] bg-[#181b24] p-5 sm:p-6">
               <div className="grid grid-cols-3 divide-x divide-[#262a36]">
                 {[
-                  { Icon: Users, value: "133K+", label: "ACTIVE USERS" },
+                  { Icon: Users, value: "233K+", label: "ACTIVE USERS" },
                   { Icon: DollarSign, value: "$300+", label: "PER OFFER" },
                   { Icon: Clock, value: "Fast", label: "CASHOUTS" },
                 ].map(({ Icon, value, label }) => (
