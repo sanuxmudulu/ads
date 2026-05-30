@@ -148,7 +148,13 @@ function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f1724] text-white">
+    <div
+      className="min-h-screen text-white"
+      style={{
+        background:
+          "radial-gradient(circle at 50% 18%, rgba(151, 61, 255, 0.22), transparent 34%), radial-gradient(circle at 50% 48%, rgba(180, 81, 255, 0.11), transparent 28%), linear-gradient(180deg, #130821 0%, #0f1724 42%, #0f1724 100%)",
+      }}
+    >
       <div className="mx-auto w-full max-w-[760px] px-5 py-4 sm:px-8 sm:py-10">
         <ProgressBar percent={step === 1 ? 50 : 100} step={`Step ${step} of 2`} />
 
@@ -156,10 +162,10 @@ function Landing() {
           <section className="mt-5 text-center sm:mt-10">
             <Badge>Playful Rewards EXCLUSIVE</Badge>
             <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-  Get Paid for Testing
-  <br />
-  <GradientText>Apps &amp; Games</GradientText>
-</h1>
+              Get Paid for Testing
+              <br />
+              <GradientText>Apps &amp; Games</GradientText>
+            </h1>
             <p className="mx-auto mt-4 max-w-[660px] text-[14px] leading-snug text-[#a7aec5] sm:mt-6 sm:text-lg sm:leading-relaxed">
               Earn up to $300+ per offer by testing apps, games &amp; completing surveys. Fast cashouts available!
             </p>
@@ -182,8 +188,6 @@ function Landing() {
               </div>
             </div>
 
-            
-
             <h2 className="mt-7 text-xl font-bold text-white sm:mt-12">What type of phone do you use?</h2>
 
             <div className="mt-4 space-y-3 text-left sm:mt-6 sm:space-y-4">
@@ -199,26 +203,26 @@ function Landing() {
                     onMouseEnter={() => setHovered(id as "iphone" | "android")}
                     onMouseLeave={() => setHovered(null)}
                     onTouchStart={() => setHovered(id as "iphone" | "android")}
-                    className="group relative block w-full overflow-hidden rounded-2xl border border-[#262a36] p-[1px] transition-all duration-300 active:scale-[0.99]"
-                    style={
-                      active
-                        ? { backgroundImage: "linear-gradient(90deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)", borderColor: "transparent" }
-                        : undefined
-                    }
+                    className="group relative block w-full overflow-hidden rounded-2xl border border-transparent p-[1px] shadow-[0_12px_28px_rgba(151,61,255,0.22)] transition-all duration-300 active:scale-[0.99]"
+                    style={{
+                      background: active
+                        ? "linear-gradient(90deg, #953cff, #b451ff)"
+                        : "linear-gradient(90deg, rgba(149,60,255,0.7), rgba(180,81,255,0.7))",
+                    }}
                   >
                     <div
                       className="flex items-center justify-between rounded-2xl px-5 py-5 transition-colors duration-300"
                       style={{
                         background: active
-                          ? "linear-gradient(90deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)"
-                          : "#181b24",
+                          ? "linear-gradient(90deg, #953cff, #b451ff)"
+                          : "linear-gradient(90deg, #953cff, #b451ff)",
                       }}
                     >
                       <div className="flex items-center gap-4">
                         <Icon className="h-7 w-7 text-white" />
                         <div>
                           <div className="text-lg font-bold text-white">{label}</div>
-                          <div className="text-sm text-[#a7aec5] group-hover:text-white/90">{sub}</div>
+                          <div className="text-sm text-white/85">{sub}</div>
                         </div>
                       </div>
                       <ChevronRight className="h-5 w-5 text-white/80" />
