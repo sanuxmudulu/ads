@@ -16,16 +16,16 @@ function App() {
   };
 
   const notifications = [
-    <>Olivia claimed <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
-    <>Charlotte received <span className="text-black font-semibold">$650</span> for doing 5 deals</>,
-    <>Amelia received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
-    <>Isla claimed <span className="text-black font-semibold">$500</span> for doing 4 deals</>,
-    <>Ava claimed <span className="text-black font-semibold">$750</span> for doing 6 deals</>,
-    <>Noah received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
-    <>Grace claimed <span className="text-black font-semibold">$650</span> for doing 5 deals</>,
-    <>Willow received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
-    <>Harper claimed <span className="text-black font-semibold">$650</span> for completing 5 deals</>,
-    <>Chloe claimed <span className="text-black font-semibold">$500</span> for doing 4 deals</>,
+    <>Olivia claimed <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
+    <>Charlotte received <span className="text-green-500 font-semibold">$650</span> for doing 5 deals</>,
+    <>Amelia received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
+    <>Isla claimed <span className="text-green-500 font-semibold">$500</span> for doing 4 deals</>,
+    <>Ava claimed <span className="text-green-500 font-semibold">$750</span> for doing 6 deals</>,
+    <>Noah received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
+    <>Grace claimed <span className="text-green-500 font-semibold">$650</span> for doing 5 deals</>,
+    <>Willow received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
+    <>Harper claimed <span className="text-green-500 font-semibold">$650</span> for completing 5 deals</>,
+    <>Chloe claimed <span className="text-green-500 font-semibold">$500</span> for doing 4 deals</>,
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -189,7 +189,7 @@ function App() {
             }`}
           >
             <div className="flex items-center justify-center gap-2 text-center">
-              <span className="h-2.5 w-2.5 rounded-full bg-black flex-shrink-0" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-500 flex-shrink-0" />
 
               <p className="text-sm md:text-base font-semibold text-black leading-snug">
                 {shuffledNotifications[currentIndex]}
