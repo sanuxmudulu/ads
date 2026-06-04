@@ -1,290 +1,223 @@
-import { useEffect, useMemo, useState } from "react";
-import { Users, DollarSign, Clock, Smartphone, ChevronRight, Star, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import "./styles.css";
 
-const AFFILIATE_URL = "https://giftclick.org/aff_c?offer_id=2956&aff_id=150406";
+function App() {
+  const baseUrl = "https://giftclick.org/aff_c?offer_id=2596&aff_id=150406";
 
-function GreenStars({ count = 5 }: { count?: number }) {
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-[#00b67a] text-[#00b67a]" />
-      ))}
-    </div>
-  );
-}
+  const [showPopup, setShowPopup] = useState(false);
 
-function TrustpilotHeader() {
-  return (
-    <div className="flex items-center justify-center gap-2">
-      <Star className="h-6 w-6 fill-[#00b67a] text-[#00b67a]" />
-      <span className="text-xl font-bold text-white">Trustpilot</span>
-    </div>
-  );
-}
-
-const reviews = [
-  {
-    initials: "CK",
-    name: "Charlotte Kingston",
-    title: "The games are fun to play!",
-    body: "The games are fun to play! They have great offers. All you have to do is complete the required task and you will receive the reward. It's just that simple. The payout method is quick and I received my reward via PayPal the same day too.",
-  },
-  {
-    initials: "E",
-    name: "Ella",
-    title: "They Do Pay!!!",
-    body: "I've been playing and I actually thought I messed up by not redeeming my points in a timely manner but I was wrong and just made redeemed my first game play for a $50.00 Visa card!!!",
-  },
-  {
-    initials: "CL",
-    name: "Clover",
-    title: "I cashed out my 50$ VISA no problem.",
-    body: "I cashed out my 50$ VISA no problem. My account had no aftereffects, I recommend as a fun and easy way to make some money.",
-  },
-  {
-    initials: "HM",
-    name: "Haley Montanez",
-    title: "Always very accurate!",
-    body: "Send me my money always and is very accurate and whenever I have a problem the online helpline is super helpful! Recommended side gig for people on their phones.",
-  },
-];
-
-function ReviewsCard() {
-  return (
-    <div className="rounded-2xl border border-[#262a36] bg-[#181b24] p-6 sm:p-8">
-      <TrustpilotHeader />
-      <div className="mt-8 space-y-8">
-        {reviews.map((r, i) => (
-          <div key={i}>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e5e7eb] text-sm font-bold text-[#0f1724]">
-                {r.initials}
-              </div>
-              <span className="font-bold text-white">{r.name}</span>
-            </div>
-            <div className="mt-3 border-t border-[#262a36] pt-3">
-              <div className="flex items-center gap-3">
-                <GreenStars />
-                <span className="flex items-center gap-1 text-sm text-white">
-                  <Check className="h-4 w-4 text-[#00b67a]" /> Verified
-                </span>
-              </div>
-              <h4 className="mt-3 font-bold text-white">{r.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-[#a7aec5]">{r.body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function GradientText({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      className="bg-clip-text text-transparent"
-      style={{ backgroundImage: "linear-gradient(90deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)" }}
-    >
-      {children}
-    </span>
-  );
-}
-
-function ProgressBar({ percent, step }: { percent: number; step: string }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#262a36]">
-        <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{
-            width: `${percent}%`,
-            backgroundImage: "linear-gradient(90deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)",
-          }}
-        />
-      </div>
-      <span className="shrink-0 text-sm font-semibold text-[#a7aec5]">{step}</span>
-    </div>
-  );
-}
-
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-block rounded-full p-[2px]" style={{ backgroundImage: "linear-gradient(90deg, #a735f0, #c9709a, #ffd21f)" }}>
-      <div className="rounded-full bg-[#0f1724] px-5 py-2">
-        <span className="text-sm font-extrabold tracking-wide text-[#ffd000]">{children}</span>
-      </div>
-    </div>
-  );
-}
-
-function AndroidIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M17.6 9.48l1.84-3.18a.4.4 0 10-.69-.4l-1.86 3.22a11.6 11.6 0 00-9.78 0L5.25 5.9a.4.4 0 10-.69.4L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z" />
-    </svg>
-  );
-}
-
-function Landing() {
-  const [step, setStep] = useState<1 | 2>(1);
-  const [hovered, setHovered] = useState<"iphone" | "android" | null>(null);
-
-  const adParam = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    return new URLSearchParams(window.location.search).get("ad");
-  }, []);
-
-  useEffect(() => {
-    if (step === 2 && typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [step]);
-
-  const selectDevice = () => setStep(2);
-
-  const handleCta = () => {
-    const url = adParam ? `${AFFILIATE_URL}&source=${encodeURIComponent(adParam)}` : AFFILIATE_URL;
-    window.location.href = url;
+  const handleClaimClick = () => {
+    setShowPopup(true);
   };
 
-  return (
-    <div
-      className="min-h-screen text-white"
-      style={{
-        background:
-          "radial-gradient(circle at 50% 18%, rgba(151, 61, 255, 0.22), transparent 34%), radial-gradient(circle at 50% 48%, rgba(180, 81, 255, 0.11), transparent 28%), linear-gradient(180deg, #130821 0%, #0f1724 42%, #0f1724 100%)",
-      }}
-    >
-      <div className="mx-auto w-full max-w-[760px] px-5 py-4 sm:px-8 sm:py-10">
-        <ProgressBar percent={step === 1 ? 50 : 100} step={`Step ${step} of 2`} />
+  const handlePopupClaim = () => {
+    window.location.href = baseUrl;
+  };
 
-        {step === 1 ? (
-          <section className="mt-5 text-center sm:mt-10">
-            <Badge>Playful Rewards EXCLUSIVE</Badge>
-            <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-              Get Paid for Testing
-              <br />
-              <GradientText>Apps &amp; Games</GradientText>
-            </h1>
-            <p className="mx-auto mt-4 max-w-[660px] text-[14px] leading-snug text-[#a7aec5] sm:mt-6 sm:text-lg sm:leading-relaxed">
-              Earn up to $300+ per offer by testing apps, games &amp; completing surveys. Fast cashouts available!
-            </p>
+  const notifications = [
+    <>Olivia claimed <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
+    <>Charlotte received <span className="text-green-500 font-semibold">$90</span> for doing 4 deals</>,
+    <>Amelia received <span className="text-green-500 font-semibold">$90</span> for completing 4 deals</>,
+    <>Isla claimed <span className="text-green-500 font-semibold">$80</span> for doing 3 deals</>,
+    <>Ava claimed <span className="text-green-500 font-semibold">$100</span> for doing 5 deals</>,
+    <>Noah received <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
+    <>Grace claimed <span className="text-green-500 font-semibold">$90</span> for doing 4 deals</>,
+    <>Willow received <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
+    <>Harper claimed <span className="text-green-500 font-semibold">$90</span> for completing 4 deals</>,
+    <>Chloe claimed <span className="text-green-500 font-semibold">$80</span> for doing 3 deals</>,
+  ];
 
-            <div className="mt-8 rounded-2xl border border-[#262a36] bg-[#181b24] p-5 sm:p-6">
-              <div className="grid grid-cols-3 divide-x divide-[#262a36]">
-                {[
-                  { Icon: Users, value: "233K+", label: "ACTIVE USERS" },
-                  { Icon: DollarSign, value: "$300+", label: "PER OFFER" },
-                  { Icon: Clock, value: "Fast", label: "CASHOUTS" },
-                ].map(({ Icon, value, label }) => (
-                  <div key={label} className="flex flex-col items-center px-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ffd000]">
-                      <Icon className="h-5 w-5 text-[#0f1724]" />
-                    </div>
-                    <div className="mt-3 text-xl font-black text-[#ffd000] sm:text-2xl">{value}</div>
-                    <div className="mt-1 text-[10px] font-bold tracking-wider text-[#a7aec5] sm:text-xs">{label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
 
-            <h2 className="mt-7 text-xl font-bold text-white sm:mt-12">What type of phone do you use?</h2>
+  const shuffledNotifications = notifications;
 
-            <div className="mt-4 space-y-3 text-left sm:mt-6 sm:space-y-4">
-              {[
-                { id: "iphone", label: "iPhone", sub: "Perfect for Playful Rewards!", Icon: Smartphone },
-                { id: "android", label: "Android", sub: "Works with all Android devices!", Icon: AndroidIcon },
-              ].map(({ id, label, sub, Icon }) => {
-                const active = hovered === id;
-                return (
-                  <button
-                    key={id}
-                    onClick={selectDevice}
-                    onMouseEnter={() => setHovered(id as "iphone" | "android")}
-                    onMouseLeave={() => setHovered(null)}
-                    onTouchStart={() => setHovered(id as "iphone" | "android")}
-                    className="group relative block w-full overflow-hidden rounded-2xl border border-transparent p-[1px] shadow-[0_12px_28px_rgba(151,61,255,0.22)] transition-all duration-300 active:scale-[0.99]"
-                    style={{
-                      background: active
-                        ? "linear-gradient(90deg, #953cff, #b451ff)"
-                        : "linear-gradient(90deg, rgba(149,60,255,0.7), rgba(180,81,255,0.7))",
-                    }}
-                  >
-                    <div
-                      className="flex items-center justify-between rounded-2xl px-5 py-5 transition-colors duration-300"
-                      style={{
-                        background: active
-                          ? "linear-gradient(90deg, #953cff, #b451ff)"
-                          : "linear-gradient(90deg, #953cff, #b451ff)",
-                      }}
-                    >
-                      <div className="flex items-center gap-4">
-                        <Icon className="h-7 w-7 text-white" />
-                        <div>
-                          <div className="text-lg font-bold text-white">{label}</div>
-                          <div className="text-sm text-white/85">{sub}</div>
-                        </div>
-                      </div>
-                      <ChevronRight className="h-5 w-5 text-white/80" />
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-        ) : (
-          <section className="mt-10 text-center">
-            <Badge>READY TO EARN!</Badge>
-            <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-              Start Earning With
-              <br />
-              <GradientText>Playful Rewards</GradientText>
-            </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-base leading-relaxed text-[#a7aec5] sm:text-lg">
-              Your device is perfect for Playful Rewards! Complete registration to start testing apps, games &amp; surveys with instant cashouts.
-            </p>
+  useEffect(() => {
+    const showTimer = setTimeout(() => {
+      setVisible(true);
+    }, 1500);
 
-            <div className="mt-10 flex justify-center">
-              <button
-                onClick={handleCta}
-                className="group relative rounded-2xl px-10 py-5 text-lg font-black tracking-wide text-white shadow-[0_0_40px_-5px_#a735f0] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_60px_-5px_#c9709a] active:scale-95"
-                style={{ backgroundImage: "linear-gradient(90deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)" }}
-              >
-                START EARNING NOW!
-              </button>
-            </div>
+    const cycleTimer = setInterval(() => {
+      setVisible(false);
 
-            <div className="mt-12 rounded-2xl border border-[#262a36] bg-[#181b24] p-6 text-left sm:p-8">
-              <h3 className="text-center text-lg font-bold text-white">Your Playful Rewards Earning Journey</h3>
-              <div className="mt-6 space-y-5">
-                {[
-                  { n: 1, title: "Join Playful Rewards", body: "Register your account to access thousands of high-paying offers." },
-                  { n: 2, title: "Test Apps & Complete Offers", body: "Play games, test apps, complete surveys, and earn up to $300+ per offer." },
-                ].map((s) => (
-                  <div key={s.n} className="flex items-start gap-4">
-                    <div
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
-                      style={{ backgroundImage: "linear-gradient(135deg, #a735f0 0%, #c9709a 50%, #ffd21f 100%)" }}
-                    >
-                      {s.n}
-                    </div>
-                    <div>
-                      <div className="font-bold text-white">{s.title}</div>
-                      <div className="mt-1 text-sm text-[#a7aec5]">{s.body}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % shuffledNotifications.length);
+        setVisible(true);
+      }, 350);
+    }, 9000);
+
+    return () => {
+      clearTimeout(showTimer);
+      clearInterval(cycleTimer);
+    };
+  }, [shuffledNotifications.length]);
+
+  const faqs = [
+    {
+      q: "How long do the deals take?",
+      a: "Most deals take just a few minutes to complete. You can finish them at your own pace with no time limit once you've registered.",
+    },
+    {
+      q: "What are deals?",
+      a: "Deals are sponsored offers from our partner brands like downloading games, free trials, sign-ups, or surveys. They're how the coupon is funded.",
+    },
+    {
+      q: "How many deals do I have to do?",
+      a: "We recommend completing 3 to 5 deals to qualify. The more you complete, the higher your coupon value climbs - up to $100.",
+    },
+    {
+      q: "When will I receive my coupon?",
+      a: "Once your deals are verified, your Apple Pay coupon code will be delivered to your email within 24-48 hours.",
+    },
+  ];
+
+  function FAQItem({ q, a }: { q: string; a: string }) {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <div
+        className="rounded-xl border border-green-700/20 px-4 py-3"
+        style={{ background: "#00704A" }}
+      >
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full flex items-center justify-between text-left"
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+        >
+          <span className="text-white font-semibold">{q}</span>
+          <span
+            className="text-white/70 ml-3 flex-shrink-0 transition-transform duration-200"
+            style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
+          >
+            +
+          </span>
+        </button>
+
+        {open && (
+          <p className="mt-2 text-sm text-white/80 leading-relaxed">{a}</p>
         )}
-
-        <div className="mt-12">
-          <ReviewsCard />
-        </div>
       </div>
-    </div>
+    );
+  }
+
+  function FAQSection() {
+    return (
+      <section className="mt-10 rounded-2xl bg-white border border-gray-200 p-5 md:p-7 shadow-sm w-full max-w-lg">
+        <h2 className="text-2xl md:text-3xl font-bold text-black text-center">
+          Common Questions
+        </h2>
+
+        <div className="mt-5 space-y-3">
+          {faqs.map((item, i) => (
+            <FAQItem key={i} q={item.q} a={item.a} />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <>
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl text-center">
+            <p className="text-lg font-bold text-black mb-5">
+              Set your age to at least 18 years to get the coupon.
+            </p>
+
+            <button
+              onClick={handlePopupClaim}
+              className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-6 rounded-full shadow-lg"
+            >
+              Claim Now
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div
+        className="w-full text-white text-center text-sm font-semibold py-2 px-4 fixed top-0 left-0 z-40"
+        style={{ background: "#00704A" }}
+      >
+        5,500+ People Already Claimed
+      </div>
+
+      <div
+        className="min-h-screen flex flex-col items-center justify-center px-4 py-4 fade-in-up mt-8"
+        style={{ background: "#fff" }}
+      >
+        <div className="mb-2">
+          <img
+            src="/images/Apple Pay.jpg"
+            alt="Apple Pay"
+            className="h-20 md:h-24 object-contain"
+          />
+        </div>
+
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
+          $100 Apple Pay Coupon
+        </h1>
+
+        <div className="w-full max-w-lg rounded-2xl border border-gray-200 p-6 mb-6 bg-white">
+          <div className="space-y-6">
+            {[1, 2, 3, 4].map((step, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0 step-number"
+                  style={{ background: "#00704A", color: "#fff" }}
+                >
+                  {step}
+                </div>
+
+                <h3 className="font-semibold text-black">
+                  {
+                    [
+                      'Click "Claim Now"',
+                      "Enter your email and basic info",
+                      "Complete 3-5 sponsored deals",
+                      "Enjoy your $100 coupon!",
+                    ][i]
+                  }
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button
+          onClick={handleClaimClick}
+          className="w-full max-w-md font-semibold py-5 px-6 rounded-full mb-3 shein-cta-button cta-pump-enhanced flex items-center justify-center gap-3 shadow-lg"
+          style={{ background: "#00704A", color: "#fff" }}
+        >
+          <div className="text-left">
+            <div className="font-bold text-base md:text-lg">Claim Now</div>
+          </div>
+        </button>
+
+        <p className="text-sm text-gray-600 text-center mb-4">
+          Higher value deals = higher payout
+        </p>
+
+        <div className="w-full max-w-lg mb-2">
+          <div
+            className={`rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-lg transition-all duration-300 ${
+              visible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+            }`}
+          >
+            <div className="flex items-center justify-center gap-2 text-center">
+              <span className="h-2.5 w-2.5 rounded-full bg-green-500 flex-shrink-0" />
+
+              <p className="text-sm md:text-base font-semibold text-black leading-snug">
+                {shuffledNotifications[currentIndex]}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <FAQSection />
+      </div>
+    </>
   );
 }
 
-export default Landing;
+export default App;
