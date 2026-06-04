@@ -4,27 +4,28 @@ import "./styles.css";
 function App() {
   const baseUrl = "https://giftclick.org/aff_c?offer_id=2596&aff_id=150406";
 
-  const [showPopup, setShowPopup] = useState(false);
-
   const handleClaimClick = () => {
-    setShowPopup(true);
-  };
+    const params = new URLSearchParams(window.location.search);
+    const adValue = params.get("ad");
 
-  const handlePopupClaim = () => {
-    window.location.href = baseUrl;
+    const finalUrl = adValue
+      ? `${baseUrl}&source=${encodeURIComponent(adValue)}`
+      : baseUrl;
+
+    window.location.href = finalUrl;
   };
 
   const notifications = [
-    <>Olivia claimed <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
-    <>Charlotte received <span className="text-green-500 font-semibold">$90</span> for doing 4 deals</>,
-    <>Amelia received <span className="text-green-500 font-semibold">$90</span> for completing 4 deals</>,
-    <>Isla claimed <span className="text-green-500 font-semibold">$80</span> for doing 3 deals</>,
-    <>Ava claimed <span className="text-green-500 font-semibold">$100</span> for doing 5 deals</>,
-    <>Noah received <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
-    <>Grace claimed <span className="text-green-500 font-semibold">$90</span> for doing 4 deals</>,
-    <>Willow received <span className="text-green-500 font-semibold">$100</span> for completing 5 deals</>,
-    <>Harper claimed <span className="text-green-500 font-semibold">$90</span> for completing 4 deals</>,
-    <>Chloe claimed <span className="text-green-500 font-semibold">$80</span> for doing 3 deals</>,
+    <>Olivia claimed <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
+    <>Charlotte received <span className="text-black font-semibold">$650</span> for doing 5 deals</>,
+    <>Amelia received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
+    <>Isla claimed <span className="text-black font-semibold">$500</span> for doing 4 deals</>,
+    <>Ava claimed <span className="text-black font-semibold">$750</span> for doing 6 deals</>,
+    <>Noah received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
+    <>Grace claimed <span className="text-black font-semibold">$650</span> for doing 5 deals</>,
+    <>Willow received <span className="text-black font-semibold">$750</span> for completing 6 deals</>,
+    <>Harper claimed <span className="text-black font-semibold">$650</span> for completing 5 deals</>,
+    <>Chloe claimed <span className="text-black font-semibold">$500</span> for doing 4 deals</>,
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,7 +64,7 @@ function App() {
     },
     {
       q: "How many deals do I have to do?",
-      a: "We recommend completing 3 to 5 deals to qualify. The more you complete, the higher your coupon value climbs - up to $100.",
+      a: "We recommend completing 4 to 6 deals to qualify. The more you complete, the higher your coupon value climbs - up to $750.",
     },
     {
       q: "When will I receive my coupon?",
@@ -76,8 +77,8 @@ function App() {
 
     return (
       <div
-        className="rounded-xl border border-green-700/20 px-4 py-3"
-        style={{ background: "#00704A" }}
+        className="rounded-xl border border-gray-300 px-4 py-3"
+        style={{ background: "#000" }}
       >
         <button
           onClick={() => setOpen(!open)}
@@ -118,26 +119,9 @@ function App() {
 
   return (
     <>
-      {showPopup && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl text-center">
-            <p className="text-lg font-bold text-black mb-5">
-              Set your age to at least 18 years to get the coupon.
-            </p>
-
-            <button
-              onClick={handlePopupClaim}
-              className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-6 rounded-full shadow-lg"
-            >
-              Claim Now
-            </button>
-          </div>
-        </div>
-      )}
-
       <div
         className="w-full text-white text-center text-sm font-semibold py-2 px-4 fixed top-0 left-0 z-40"
-        style={{ background: "#00704A" }}
+        style={{ background: "#000" }}
       >
         5,500+ People Already Claimed
       </div>
@@ -155,7 +139,7 @@ function App() {
         </div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
-          $100 Apple Pay Coupon
+          $750 Apple Pay Coupon
         </h1>
 
         <div className="w-full max-w-lg rounded-2xl border border-gray-200 p-6 mb-6 bg-white">
@@ -164,7 +148,7 @@ function App() {
               <div key={i} className="flex items-center gap-4">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0 step-number"
-                  style={{ background: "#00704A", color: "#fff" }}
+                  style={{ background: "#000", color: "#fff" }}
                 >
                   {step}
                 </div>
@@ -174,8 +158,8 @@ function App() {
                     [
                       'Click "Claim Now"',
                       "Enter your email and basic info",
-                      "Complete 3-5 sponsored deals",
-                      "Enjoy your $100 coupon!",
+                      "Complete 4-6 sponsored deals",
+                      "Enjoy your $750 coupon!",
                     ][i]
                   }
                 </h3>
@@ -187,7 +171,7 @@ function App() {
         <button
           onClick={handleClaimClick}
           className="w-full max-w-md font-semibold py-5 px-6 rounded-full mb-3 shein-cta-button cta-pump-enhanced flex items-center justify-center gap-3 shadow-lg"
-          style={{ background: "#00704A", color: "#fff" }}
+          style={{ background: "#000", color: "#fff" }}
         >
           <div className="text-left">
             <div className="font-bold text-base md:text-lg">Claim Now</div>
@@ -205,7 +189,7 @@ function App() {
             }`}
           >
             <div className="flex items-center justify-center gap-2 text-center">
-              <span className="h-2.5 w-2.5 rounded-full bg-green-500 flex-shrink-0" />
+              <span className="h-2.5 w-2.5 rounded-full bg-black flex-shrink-0" />
 
               <p className="text-sm md:text-base font-semibold text-black leading-snug">
                 {shuffledNotifications[currentIndex]}
