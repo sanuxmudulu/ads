@@ -148,7 +148,7 @@ function App() {
       >
         <div className="mb-2">
           <img
-            src="/images/Apple Pay.jpg"
+            src="/images/apple pay.png"
             alt="Apple Pay"
             className="h-20 md:h-24 object-contain"
           />
