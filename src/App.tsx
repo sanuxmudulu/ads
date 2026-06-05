@@ -16,16 +16,16 @@ function App() {
   };
 
   const notifications = [
-    <>Olivia claimed <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
-    <>Charlotte received <span className="text-green-500 font-semibold">$650</span> for doing 5 deals</>,
-    <>Amelia received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
-    <>Isla claimed <span className="text-green-500 font-semibold">$500</span> for doing 4 deals</>,
-    <>Ava claimed <span className="text-green-500 font-semibold">$750</span> for doing 6 deals</>,
-    <>Noah received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
-    <>Grace claimed <span className="text-green-500 font-semibold">$650</span> for doing 5 deals</>,
-    <>Willow received <span className="text-green-500 font-semibold">$750</span> for completing 6 deals</>,
-    <>Harper claimed <span className="text-green-500 font-semibold">$650</span> for completing 5 deals</>,
-    <>Chloe claimed <span className="text-green-500 font-semibold">$500</span> for doing 4 deals</>,
+    <>Olivia claimed <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
+    <>Charlotte received <span className="text-green-500 font-semibold">$650</span> for doing 4 deals</>,
+    <>Amelia received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
+    <>Isla claimed <span className="text-green-500 font-semibold">$500</span> for doing 3 deals</>,
+    <>Ava claimed <span className="text-green-500 font-semibold">$750</span> for doing 5 deals</>,
+    <>Noah received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
+    <>Grace claimed <span className="text-green-500 font-semibold">$650</span> for doing 4 deals</>,
+    <>Willow received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
+    <>Harper claimed <span className="text-green-500 font-semibold">$650</span> for completing 4 deals</>,
+    <>Chloe claimed <span className="text-green-500 font-semibold">$500</span> for doing 3 deals</>,
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -144,7 +144,7 @@ function App() {
 
         <div className="w-full max-w-lg rounded-2xl border border-gray-200 p-6 mb-6 bg-white">
           <div className="space-y-6">
-            {[1, 2, 3, 4].map((step, i) => (
+            {[1, 2, 3].map((step, i) => (
               <div key={i} className="flex items-center gap-4">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0 step-number"
@@ -156,10 +156,9 @@ function App() {
                 <h3 className="font-semibold text-black">
                   {
                     [
-                      'Click "Claim Now"',
                       "Enter your email and basic info",
-                      "Complete 4-6 sponsored deals",
-                      "Enjoy your $750 coupon!",
+                      "Complete 3-5 sponsored deals",
+                      "Receive your $750 Apple Cash!",
                     ][i]
                   }
                 </h3>
