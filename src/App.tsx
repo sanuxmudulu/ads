@@ -130,29 +130,17 @@ function App() {
         className="min-h-screen flex flex-col items-center justify-center px-4 py-4 fade-in-up mt-8"
         style={{ background: "#fff" }}
       >
-        <div className="w-full max-w-lg mb-6 rounded-2xl overflow-hidden shadow-lg" style={{ background: "#1c1c1e" }}>
-  <div className="flex items-center justify-between px-5 pt-5 pb-2">
-    <img
-      src="/images/apple.png"
-      alt="Apple Pay"
-      className="h-8 object-contain"
-      style={{ filter: "brightness(0) invert(1)" }}
-    />
-    <span className="text-white text-3xl font-bold">$750</span>
-  </div>
-  <div className="px-5 pb-5 pt-1">
-    <p className="text-white/60 text-sm">Apple Pay Coupon</p>
-    <div className="mt-4 flex gap-1">
-      {[...Array(8)].map((_, i) => (
-        <div key={i} className="h-1.5 flex-1 rounded-full" style={{ background: i < 5 ? "#fff" : "#ffffff30" }} />
-      ))}
-    </div>
-  </div>
-</div>
+        <div className="mb-2">
+          <img
+            src="/images/apple pay.png"
+            alt="Apple Pay"
+            className="h-20 md:h-24 object-contain"
+          />
+        </div>
 
-<h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
-  $750 Apple Pay Coupon
-</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
+          $750 Apple Pay Coupon
+        </h1>
 
         <div className="w-full max-w-lg rounded-2xl border border-gray-200 p-6 mb-6 bg-white">
           <div className="space-y-6">
@@ -190,7 +178,9 @@ function App() {
           </div>
         </button>
 
-        
+        <p className="text-sm text-gray-600 text-center mb-4">
+          Higher value deals = higher payout
+        </p>
 
         <div className="w-full max-w-lg mb-2">
           <div
