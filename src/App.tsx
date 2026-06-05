@@ -55,21 +55,21 @@ function App() {
 
   const faqs = [
     {
-      q: "How long do the deals take?",
-      a: "Most deals take just a few minutes to complete. You can finish them at your own pace with no time limit once you've registered.",
-    },
-    {
-      q: "What are deals?",
-      a: "Deals are sponsored offers from our partner brands like downloading games, free trials, sign-ups, or surveys. They're how the coupon is funded.",
-    },
-    {
-      q: "How many deals do I have to do?",
-      a: "We recommend completing 4 to 6 deals to qualify. The more you complete, the higher your coupon value climbs - up to $750.",
-    },
-    {
-      q: "When will I receive my coupon?",
-      a: "Once your deals are verified, your Apple Pay coupon code will be delivered to your email within 24-48 hours.",
-    },
+  q: "How long do the deals take?",
+  a: "Most deals take just a few minutes to complete. You can finish them at your own pace with no time limit once you've registered.",
+},
+{
+  q: "What are deals?",
+  a: "Deals are sponsored offers from partner brands — things like downloading apps, free trials, sign-ups, or short surveys. They're how your Apple Cash is funded.",
+},
+{
+  q: "How many deals do I have to do?",
+  a: "We recommend completing 3-5 deals to qualify. The more you complete, the higher your Apple Cash value climbs — up to $750.",
+},
+{
+  q: "When will I receive my Apple Cash?",
+  a: "Once your deals are verified, you will receive your Apple Cash reward instantly.",
+},
   ];
 
   function FAQItem({ q, a }: { q: string; a: string }) {
@@ -139,7 +139,7 @@ function App() {
 </div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
-          $750 Apple Pay Coupon
+          $750 Apple Cash
         </h1>
 
         <div className="w-full max-w-lg rounded-2xl border border-gray-200 p-6 mb-6 bg-white">
