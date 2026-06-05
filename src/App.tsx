@@ -131,12 +131,12 @@ function App() {
         style={{ background: "#fff" }}
       >
         <div className="mb-2">
-          <img
-            src="/images/apple.png"
-            alt="Apple Pay"
-            className="h-20 md:h-24 object-contain"
-          />
-        </div>
+  <img
+    src="/images/apple.png"
+    alt="Apple Pay"
+    className="w-full rounded-2xl"
+  />
+</div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-2 text-black max-w-lg leading-snug">
           $750 Apple Pay Coupon
@@ -177,10 +177,6 @@ function App() {
             <div className="font-bold text-base md:text-lg">Claim Now</div>
           </div>
         </button>
-
-        <p className="text-sm text-gray-600 text-center mb-4">
-          Higher value deals = higher payout
-        </p>
 
         <div className="w-full max-w-lg mb-2">
           <div
