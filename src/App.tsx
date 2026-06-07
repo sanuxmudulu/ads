@@ -135,7 +135,7 @@ function App() {
           style={{ background: "#000", color: "#fff" }}
         >
           <div className="text-left">
-            <div className="font-bold text-base md:text-lg">Claim My $750 →</div>
+            <div className="font-bold text-lg md:text-xl">Claim My $750 →</div>
           </div>
         </button>
 
