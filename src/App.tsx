@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./styles.css";
 
 function App() {
@@ -14,44 +14,6 @@ function App() {
 
     window.location.href = finalUrl;
   };
-
-  const notifications = [
-    <>Olivia claimed <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
-    <>Charlotte received <span className="text-green-500 font-semibold">$650</span> for doing 4 deals</>,
-    <>Amelia received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
-    <>Isla claimed <span className="text-green-500 font-semibold">$500</span> for doing 3 deals</>,
-    <>Ava claimed <span className="text-green-500 font-semibold">$750</span> for doing 5 deals</>,
-    <>Noah received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
-    <>Grace claimed <span className="text-green-500 font-semibold">$650</span> for doing 4 deals</>,
-    <>Willow received <span className="text-green-500 font-semibold">$750</span> for completing 5 deals</>,
-    <>Harper claimed <span className="text-green-500 font-semibold">$650</span> for completing 4 deals</>,
-    <>Chloe claimed <span className="text-green-500 font-semibold">$500</span> for doing 3 deals</>,
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visible, setVisible] = useState(false);
-
-  const shuffledNotifications = notifications;
-
-  useEffect(() => {
-    const showTimer = setTimeout(() => {
-      setVisible(true);
-    }, 1500);
-
-    const cycleTimer = setInterval(() => {
-      setVisible(false);
-
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % shuffledNotifications.length);
-        setVisible(true);
-      }, 350);
-    }, 9000);
-
-    return () => {
-      clearTimeout(showTimer);
-      clearInterval(cycleTimer);
-    };
-  }, [shuffledNotifications.length]);
 
   const faqs = [
     {
@@ -177,21 +139,6 @@ function App() {
           </div>
         </button>
 
-        <div className="w-full max-w-lg mb-2">
-          <div
-            className={`rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-lg transition-all duration-300 ${
-              visible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-            }`}
-          >
-            <div className="flex items-center justify-center gap-2 text-center">
-              <span className="h-2.5 w-2.5 rounded-full bg-green-500 flex-shrink-0" />
-
-              <p className="text-sm md:text-base font-semibold text-black leading-snug">
-                {shuffledNotifications[currentIndex]}
-              </p>
-            </div>
-          </div>
-        </div>
 
         <FAQSection />
       </div>
