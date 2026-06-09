@@ -85,7 +85,7 @@ function App() {
         className="w-full text-white text-center text-sm font-semibold py-2 px-4 fixed top-0 left-0 z-40"
         style={{ background: "#000" }}
       >
-        5,500+ People Already Claimed
+        14,500+ People Already Claimed
       </div>
 
       <div
