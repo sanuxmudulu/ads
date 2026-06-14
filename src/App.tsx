@@ -18,7 +18,7 @@ function App() {
   const faqs = [
     {
   q: "How long do the deals take?",
-  a: "Most deals take just a few minutes to complete. You can finish them at your own pace with no time limit once you've registered.",
+  a: "You can complete 3-5 deals within 5-10 minutes. They are all simple tasks like downloading games, sign-ups and short surveys.",
 },
 {
   q: "What are deals?",
@@ -26,7 +26,7 @@ function App() {
 },
 {
   q: "How many deals do I have to do?",
-  a: "We recommend completing 3-5 deals to qualify. The more you complete, the higher your Apple Cash value climbs — up to $750.",
+  a: "We recommend completing 3-5 deals to qualify. Higher value deals give a higher payout.",
 },
 {
   q: "When will I receive my Apple Cash?",
